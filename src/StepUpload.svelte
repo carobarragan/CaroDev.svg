@@ -1,10 +1,22 @@
 <script lang="ts">
+    import {Cloudinary} from '@cloudinary/url-gen'
+    import{backgroundRemoval} from '@cloudinary/url-gen/actions/effect'
     import Dropzone from "dropzone"
     import "dropzone/dist/dropzone.css"
  
-    import {imageStatus, originalImage} from "./store"
+    import {imageStatus, modifiedImage, originalImage} from "./store"
       import { ImageStatus } from "../types.d"
 import{onMount} from "svelte"
+
+//creo mi instancia de cloudinary 
+const cloudinary= new Cloudinary({
+    cloud:{
+        cloudName: 'djx40lpsg',
+    },
+    url:{
+        secure:true
+    }
+})
 onMount(()=>{
     const dropzone=new Dropzone('#dropzone',{
         uploadMultiple:false,
@@ -12,19 +24,26 @@ onMount(()=>{
         maxFiles:1,
     })
     dropzone.on('sending',(file,xhr,formData)=>{
+        imageStatus.set(ImageStatus.UPLOADING)
         formData.append("upload_preset","ml_default")
         formData.append("timestamp", Date.now()/1000)
         formData.append("api_key",824285191819181)
     })
+    //aca tengo la respuesta 
     dropzone.on("success",(file,response)=>{
-        const{
-            secure_url:url
+        const{public_id:publicId, secure_url:url
         }=response
+        
+        //crear la imagen fondo transparente
+        // y guardar en el background
+        const imageWithoutBckground=cloudinary
+        .image(publicId)
+        .effect(backgroundRemoval())
+       console.log( imageWithoutBckground.toURL())
          imageStatus.set(ImageStatus.DONE)
+         modifiedImage.set(imageWithoutBckground.toURL())
          originalImage.set(url)
-         //crear la imagen fondo transparente
-         // y guardar en el background
-         console.log(response)
+        //  console.log(response)
     })
     dropzone.on("error",(file,response)=>{
         console.log("ha ido mal")
@@ -43,5 +62,7 @@ Upload Files
 
 </button>
 <strong class="text-lg mt-4 text-gray-800">Or drop a file</strong>
+{:else if $imageStatus===ImageStatus.UPLOADING}
+<strong class="text-lg mt-4 text-gray-800">Uploading files...</strong>
 {/if}
 </form>
