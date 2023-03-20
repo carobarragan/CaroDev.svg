@@ -26,6 +26,7 @@
   "dependencies": {
     "@cloudinary/url-gen": "1.9.2",
     "dropzone": "6.0.0-beta.2",
-    "two-up-element": "1.0.1"
+    "two-up-element": "1.0.1",
+    "use-editor-js": "^1.0.0"
   }
 }
