@@ -55,14 +55,19 @@ onMount(()=>{
 id="dropzone"
 class="shadow-2xl border-dashed border-2 border-gray-300 rounded-lg aspect-video w-full flex items-center justify-center flex-col"
 action=" https://api.cloudinary.com/v1_1/djx40lpsg/image/upload"
+
 > 
+
 {#if $imageStatus===ImageStatus.READY}
 <button class="pointer-events-none bg-blue-600 rounded-full text-bold text-white text-xl px-6 py-4">
 Upload Files
 
 </button>
+
 <strong class="text-lg mt-4 text-gray-800">Or drop a file</strong>
+
 {:else if $imageStatus===ImageStatus.UPLOADING}
 <strong class="text-lg mt-4 text-gray-800">Uploading files...</strong>
 {/if}
+
 </form>
