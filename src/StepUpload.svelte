@@ -54,7 +54,8 @@ onMount(()=>{
 <form
 id="dropzone"
 class="shadow-2xl border-dashed border-2 border-gray-300 rounded-lg aspect-video w-full flex items-center justify-center flex-col"
-action=" https://api.cloudinary.com/v1_1/djx40lpsg/image/upload"
+action="https://api.cloudinary.com/v1_1/djx40lpsg/image/upload/e_background_removal/"
+
 
 > 
 
@@ -71,3 +72,21 @@ Upload Files
 {/if}
 
 </form>
+<style>
+    @media(min-width:300px){
+    .form{
+        width: 100%;
+      height: 80px;
+      grid-template-columns: repeat(1, 50%);
+    }
+    .strong{
+        width: 100%;
+        background: block;
+        position: relative;
+    }
+    .button{
+        width: 100%;
+        position: absolute;
+    }
+  }
+</style>

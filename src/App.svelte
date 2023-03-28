@@ -11,7 +11,7 @@ import svelteLogo from './assets/svelte.svg'
 
 </script>
 
-<div class="max-w-xl m-auto  place-content-center w-full h-screen p-2">
+<div class="max-w-xl m-auto  place-content-center w-full h-screen p-2" >
   
   <header class="max-w-3xl mx-auto py-2 px-4 flex justify-between items-center">
     
@@ -41,21 +41,27 @@ import svelteLogo from './assets/svelte.svg'
 </main>
 <footer class="p-5 fñex fñex-col text-xs sm:gap-4 lg:flex-row lg:gap-0 justify-around items-center text-white lg:text-xl w-full mx-auto bg-[#07182E]"> Hecho con <a href="https://cloudinary.com" target="_black" rel="noreferrer"><CloudinaryLogo/></a>
   <div class="card2 scale-[0.7] sm:scale-100 mx-auto">
-    <div
-    x-show="isOpen"
-    x-transition:enter="transition ease-out duration-100 transform "
-    x-transition:enter-start="opacity-0 scale-200"
-    x-transition:enter-end="opacity-50 scale-100"
-    x-transition:leave="transition ease-in duration-75 transform"
-    x-transition:leave-start="opacity-100 scale-100"
-    x-transition:leave-end="opacity-0 scale-95"
-    class="origin-top-right absolute right-0 mt- w-56 rounded-md shadow-lg">contacto   <a class="" href="https://github.com/carobarragan"> git</a> <div>
-  
-  </div>
+
   
 </footer>
 </div>
 <style>
+  @media(max-width:800px){
+    .p{
+      padding: 3rem;
+      width: 100%;
+      
+    }
+    .span{
+      filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
+    }
+  }
+  @media(min-width:300px){
+    .p{
+      height: 80px;
+      grid-template-columns: repeat(2, 50%);
+    }
+  }
   p{
     display: block;
     margin-block-start: 1em;
